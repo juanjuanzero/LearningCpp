@@ -60,3 +60,43 @@ Visual Studio compiles the source files **.cpp** for you everytime you run the s
 
 #### Buidling, Compiler Errors and Linker Errors
 When you are building your project you might get compiler errors. For windows atleast those will have error codes that begin with the letter *C* to tell you have the compiler has found an error. Then you can also have Linker errors, those error codes will be prefixed with **LNK**. Linker errors are different than compiler errors. When you compile (or build) your code, the compiler will generate the appropriate *.obj* files from the *.cpp* files. Then theres a step to **link** them all together to create the *.exe* file which is then what we use to \"run\" the program.
+
+## Adding Vector & Algorithm | Working with Collections
+We went ahead and added the following lines of code to the just below the reference to the IO stream library.
+
+```
+#include <vector>
+using std::vector;
+
+#include <algorithm>
+using std::sort;
+using std::begin;
+using std::end;
+```
+
+### The Collection | Vector Libary
+Here we have added the ```vector``` library. A [vector](https://en.cppreference.com/w/cpp/container/vector) represents a collection of objects that are of the same type. Just above the while loop in the *LearningCpp.cpp* file we see the following code: ```vector<int> tries;``` which initializes a collection of type **int** called **tries**. This is an object.
+
+Then we use the **tries** object to act as a container for all of the failed tries that the user does. If the user needs to keep guessing (keepGuessing == true) then we add the failed guess to the **tries**. This addition is done by the **push_back()** method on the vector object. This is implemented like so inside the while loop:
+```
+if (keepGuessing) 
+{
+    tries.push_back(userGuess);
+}
+```
+
+### Working with Vectors | The Algorithm Library
+We've also added the algorithm library. The algorithm library allows us to work with collections **(not just vectors)** in C++. These are available as functions in the library. 
+
+At the top, you see the usin statements for **sort, begin, and end** methods. We use these to identify the beginning (begin()), the end (end()) of the vector and sort the vector. 
+> The begin and end methods were needed so that we sort the entire vector and not just a slice of it.
+
+Then we write them out to the console using a for loop. This is implemented in the code like so:
+```
+cout << "\nHere are were your failed attempts order by value:\n";
+    sort(begin(tries), end(tries)); //sorting
+
+    for (auto item : tries) {
+        cout << item << " ";
+    }
+```
